@@ -1,6 +1,7 @@
-#include<bits/stdc++.h>
+#include<vector>
 #include <random>
 #include <ctime>
+#include<iostream>
 
 
 using namespace std;
@@ -10,6 +11,8 @@ class perceptron{
 public:
     vector<float> inputs;
     vector<float> weights;
+    float learningRate = 0.1;
+    float totalError = 0;
 
     perceptron(){
 
@@ -18,7 +21,6 @@ public:
 
         for (int i = 0; i < weights.size(); i++){
             weights[i] = rnd(-1,1); 
-            cout<<"weights: "<<weights[i]<<endl;
         }
             
     }
@@ -26,13 +28,27 @@ public:
     int think(vector<float> &inputs){
 
         float sum = 0;
-        for (int i = 0; i < inputs.size(); i++)
-        {
+        for (int i = 0; i < inputs.size(); i++){
             sum += inputs[i]*weights[i];
         }
         return act(sum);
 
     }
+
+    void train(vector<float> &input, int target){
+        int guess = think(input);
+        int error = target - guess;
+        for (int i = 0; i < weights.size(); i++){
+            
+            weights[i] += (error * inputs[i] * learningRate);
+        }
+
+    }
+
+    vector<float> getWeights(){
+        return weights;
+    }
+
 
     int act(float x){
         if(x>=0){

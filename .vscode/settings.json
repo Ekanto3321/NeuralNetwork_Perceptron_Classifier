@@ -11,6 +11,10 @@
         "unordered_map": "cpp",
         "ostream": "cpp",
         "random": "cpp",
-        "ctime": "cpp"
+        "ctime": "cpp",
+        "functional": "cpp",
+        "__functional_03": "cpp",
+        "target": "cpp",
+        "iostream": "cpp"
     }
 }
