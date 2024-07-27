@@ -17,61 +17,32 @@ const int screenWidth = 600;
 const int screenHeight = 600;
 int numPoints = 100;
 
-int main() {
-    perceptron p;
+int main()
+{   
+    init();
 
-    vector<float> input = {1.0, -1.0};  // Example inputs
-    int target = 1;  // Example target output
+    SetTargetFPS(1);
 
-    //print initial weights
-    vector<float> weights1 = p.getWeights();
-    cout << "Updated weights:" << endl;
-    for (float weight : weights1) {
-        cout << weight << " ";
+    vector<point> pt;
+
+    for (int i = 0; i < numPoints; i++)
+    {   
+        point newpt(screenHeight,screenWidth);
+        pt.push_back(newpt);
     }
-    cout << endl;
+    
 
-    // Train the perceptron
-    p.train(input, target);
+    vector<float> input = {100,150};
 
-    // Print updated weights
-    vector<float> weights2 = p.getWeights();
-    cout << "Updated weights:" << endl;
-    for (float weight : weights2) {
-        cout << weight << " ";
-    }
-    cout << endl;
+    // cout<<"****output: "<<perc.think(input)<< endl;
+    
+    
+    drawWindow(screenHeight,screenWidth, pt);
 
+    CloseWindow(); 
+    
     return 0;
 }
-
-
-// int main()
-// {   
-//     init();
-
-//     SetTargetFPS(1);
-
-//     vector<point> pt;
-
-//     for (int i = 0; i < numPoints; i++)
-//     {   
-//         point newpt(screenHeight,screenWidth);
-//         pt.push_back(newpt);
-//     }
-    
-
-//     vector<float> input = {100,150};
-
-//     // cout<<"****output: "<<perc.think(input)<< endl;
-    
-    
-//     drawWindow(screenHeight,screenWidth, pt);
-
-//     CloseWindow(); 
-    
-//     return 0;
-// }
 
 
 void drawWindow(int height, int width, vector<point> &pt){
@@ -96,21 +67,17 @@ void drawPt(vector<point> &pt){
 
     for (int i = 0; i < pt.size(); i++)
     {
-        // if(pt[i].label==1){
-        //     DrawCircle(pt[i].x,pt[i].y,8,WHITE);
-        //     DrawCircle(pt[i].x,pt[i].y,6,BLACK);
-        // } else {
-        //     DrawCircle(pt[i].x,pt[i].y,8,WHITE);
-        // }
+        if(pt[i].label==1){
+            DrawCircle(pt[i].x,pt[i].y,8,WHITE);
+            DrawCircle(pt[i].x,pt[i].y,6,BLACK);
+        } else {
+            DrawCircle(pt[i].x,pt[i].y,8,WHITE);
+        }
 
         vector<float> inputs = {pt[i].x,pt[i].y};
         int target = pt[i].label;
 
-        cout<<perc.getWeights()[0]<<" "<<perc.getWeights()[1]<<endl;
-
         perc.train(inputs,target);
-
-        cout<<perc.getWeights()[0]<<" "<<perc.getWeights()[1]<<endl;
 
         int eduGuess = perc.think(inputs); 
 

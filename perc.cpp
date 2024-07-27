@@ -11,7 +11,7 @@ class perceptron{
 public:
     vector<float> inputs;
     vector<float> weights;
-    float learningRate = 0.1;
+    float learningRate = 0.04;
     float totalError = 0;
 
     perceptron(){
@@ -31,6 +31,7 @@ public:
         for (int i = 0; i < inputs.size(); i++){
             sum += inputs[i]*weights[i];
         }
+        cout<<"sum: "<<sum<<endl;
         return act(sum);
 
     }
@@ -39,8 +40,7 @@ public:
         int guess = think(input);
         int error = target - guess;
         for (int i = 0; i < weights.size(); i++){
-            
-            weights[i] += (error * inputs[i] * learningRate);
+            weights[i] = weights[i] + (error*input[i]*learningRate);
         }
 
     }
