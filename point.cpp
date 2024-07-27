@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+#include <random>
+#include <ctime>
+
+using namespace std;
+
+class point{
+public:
+    float x;
+    float y;
+    float label;
+
+    point(int height, int width){
+        x = rnd(0,height);
+        y = rnd(0,width);
+
+        if(x > y){
+            label = 1;
+        } else {
+            label = -1;
+        }
+
+    }
+    
+
+    float rnd(float min, float max) {
+
+        srand(time(NULL)+rand());
+	    return ((float)rand() / RAND_MAX) * (max - min) + min;
+
+    }
+
+};
