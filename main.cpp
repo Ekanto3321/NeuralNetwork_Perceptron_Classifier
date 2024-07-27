@@ -2,34 +2,38 @@
 #include "raylib.h"
 #include "perc.cpp"
 
-using namespace std;
+void draw(int height, int width, int i);
 
-void draw(int height, int width);
+using namespace std;
+const int screenWidth = 600;
+const int screenHeight = 600;
+
 
 int main()
 {   
-    const int screenWidth = 600;
-    const int screenHeight = 600;
+
     InitWindow(screenWidth, screenHeight, "Raylib Window");
 
     perceptron perc;
 
-    for (int i = 0; i < perc.weights.size(); i++)
-    {   
-        cout<<perc.weights[i]<<endl;
-    }
-    
+    vector<float> input = {1,-0.5};
 
-    draw(screenHeight,screenWidth);
+    cout<<"****output: "<<perc.think(input)<< endl;
+    
+    SetTargetFPS(10);
+    int i = 0;
+    
+    // draw(screenHeight,screenWidth, i);
+
+    CloseWindow(); 
     
     return 0;
 }
 
 
-void draw(int height, int width){
+void draw(int height, int width, int i){
     
-    SetTargetFPS(10);
-    int i = 0;
+    
     while (!WindowShouldClose()) 
     {
         BeginDrawing();
@@ -41,6 +45,5 @@ void draw(int height, int width){
         EndDrawing();
     }
 
-    CloseWindow(); 
 
 }
