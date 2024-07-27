@@ -1,15 +1,24 @@
 #include<bits/stdc++.h>
 #include "raylib.h"
+#include "perc.cpp"
 
 using namespace std;
 
 void draw(int height, int width);
 
 int main()
-{
+{   
     const int screenWidth = 600;
     const int screenHeight = 600;
     InitWindow(screenWidth, screenHeight, "Raylib Window");
+
+    perceptron perc;
+
+    for (int i = 0; i < perc.weights.size(); i++)
+    {   
+        cout<<perc.weights[i]<<endl;
+    }
+    
 
     draw(screenHeight,screenWidth);
     
