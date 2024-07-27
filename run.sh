@@ -1,3 +1,3 @@
 rm run
-g++ -o run new.cpp -lraylib -lGL -lm -lpthread -ldl -lrt
+g++ -o run main.cpp -lraylib -lGL -lm -lpthread -ldl -lrt
 ./run
