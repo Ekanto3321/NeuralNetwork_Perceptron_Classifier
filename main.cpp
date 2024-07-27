@@ -13,6 +13,7 @@ void init();
 using namespace std;
 
 perceptron perc; //initializing the perceptron only once
+
 const int screenWidth = 600;
 const int screenHeight = 600;
 int numPoints = 2000;
@@ -21,10 +22,7 @@ int main()
 {   
     init();
 
-    SetTargetFPS(1);
-
     vector<point> pt;
-
     for (int i = 0; i < numPoints; i++)
     {   
         point newpt(screenHeight,screenWidth);
@@ -38,7 +36,9 @@ int main()
     return 0;
 }
 
-
+/*
+    Draws the window and acts as the main loop for triggering the core functions
+*/
 void drawWindow(int height, int width, vector<point> &pt){
     
     ClearBackground(BLACK);
@@ -49,7 +49,7 @@ void drawWindow(int height, int width, vector<point> &pt){
             
             DrawLine(0,0,screenHeight,screenWidth,LIGHTGRAY);
             drawPt(pt);
-            cout<<++i<<endl;
+            cout<<++i<<endl; //keeping track of the frames
             
         EndDrawing();
     }
@@ -57,16 +57,21 @@ void drawWindow(int height, int width, vector<point> &pt){
 
 }
 
+
+/*
+    First Draws the points in the coordinates then passes the point coordinates as inputs
+    and the points labels as the target values to the train function. 
+*/
 void drawPt(vector<point> &pt){
 
     for (int i = 0; i < pt.size(); i++)
-    {
-        // if(pt[i].label==1){
-        //     DrawCircle(pt[i].x,pt[i].y,8,WHITE);
-        //     DrawCircle(pt[i].x,pt[i].y,6,BLACK);
-        // } else {
-        //     DrawCircle(pt[i].x,pt[i].y,8,WHITE);
-        // }
+    {   
+        if(pt[i].label==1){
+            DrawCircle(pt[i].x,pt[i].y,6,GRAY);
+            DrawCircle(pt[i].x,pt[i].y,4,RAYWHITE);
+        } else {
+            DrawCircle(pt[i].x,pt[i].y,6,DARKGRAY);
+        }
 
         vector<float> inputs = {pt[i].x,pt[i].y};
         int target = pt[i].label;
@@ -86,7 +91,12 @@ void drawPt(vector<point> &pt){
     
 }
 
+/*
+    Necessary Raylib initializations
+*/
 void init(){
+
     InitWindow(screenWidth, screenHeight, "Perceptron classification");
+    SetTargetFPS(1);
 
 }

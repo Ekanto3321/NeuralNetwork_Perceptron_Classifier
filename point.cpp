@@ -22,7 +22,7 @@ public:
 
     }
     
-
+    
     float rnd(float min, float max) {
 
         srand(time(NULL)+rand());

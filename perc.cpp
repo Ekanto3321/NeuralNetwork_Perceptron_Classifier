@@ -14,6 +14,10 @@ public:
     float learningRate = 0.04;
     float totalError = 0;
 
+    /*
+        calling the constructor and initializing the weights randomly. for convention sake it's between -1,1. The
+        inputs are not scaled so any other reasonable values can be used.
+    */
     perceptron(){
 
         inputs.resize(2);
@@ -25,6 +29,10 @@ public:
             
     }
 
+    /*
+        This is the function that does the assumptions based on the weights. This does half of the magic of perceptrons.
+        the other half is the training part.
+    */
     int think(vector<float> &inputs){
 
         float sum = 0;
@@ -35,6 +43,11 @@ public:
 
     }
 
+
+    /*
+        This is the special sauce. It nudges the weight towards their optimal values based on the learning rate. although
+        gradient descent would've been more optimal. I'm too dumb to implement that :3
+    */
     void train(vector<float> &input, int target){
         int guess = think(input);
         int error = target - guess;
@@ -48,7 +61,10 @@ public:
         return weights;
     }
 
-
+    /*
+        this is the all important activation function. In this case, it's just a simple sign function that returns the
+        sign of the input value.
+    */
     int act(float x){
         if(x>=0){
             return 1;
@@ -56,6 +72,10 @@ public:
             return -1;
         }
     }
+
+    /*
+        This is just a random number generator I got from stackoverflow :p It returns a random float
+    */
 
     float rnd(float min, float max) {
 
