@@ -15,7 +15,7 @@ using namespace std;
 perceptron perc; //initializing the perceptron only once
 const int screenWidth = 600;
 const int screenHeight = 600;
-int numPoints = 100;
+int numPoints = 2000;
 
 int main()
 {   
@@ -29,13 +29,7 @@ int main()
     {   
         point newpt(screenHeight,screenWidth);
         pt.push_back(newpt);
-    }
-    
-
-    vector<float> input = {100,150};
-
-    // cout<<"****output: "<<perc.think(input)<< endl;
-    
+    }   
     
     drawWindow(screenHeight,screenWidth, pt);
 
@@ -67,12 +61,12 @@ void drawPt(vector<point> &pt){
 
     for (int i = 0; i < pt.size(); i++)
     {
-        if(pt[i].label==1){
-            DrawCircle(pt[i].x,pt[i].y,8,WHITE);
-            DrawCircle(pt[i].x,pt[i].y,6,BLACK);
-        } else {
-            DrawCircle(pt[i].x,pt[i].y,8,WHITE);
-        }
+        // if(pt[i].label==1){
+        //     DrawCircle(pt[i].x,pt[i].y,8,WHITE);
+        //     DrawCircle(pt[i].x,pt[i].y,6,BLACK);
+        // } else {
+        //     DrawCircle(pt[i].x,pt[i].y,8,WHITE);
+        // }
 
         vector<float> inputs = {pt[i].x,pt[i].y};
         int target = pt[i].label;
@@ -86,8 +80,7 @@ void drawPt(vector<point> &pt){
         } else {
             DrawCircle(pt[i].x, pt[i].y,4,RED);
         }
-        
-        cout << endl;
+
     }
 
     

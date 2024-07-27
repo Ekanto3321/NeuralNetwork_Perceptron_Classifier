@@ -31,7 +31,6 @@ public:
         for (int i = 0; i < inputs.size(); i++){
             sum += inputs[i]*weights[i];
         }
-        cout<<"sum: "<<sum<<endl;
         return act(sum);
 
     }
